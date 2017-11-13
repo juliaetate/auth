@@ -25,17 +25,26 @@ export default class App extends Component {
 	  	}
 	  });
 	}
-	
+
 	renderContent() {
 		switch (this.state.loggedIn) {
 			case true:
 				return (
-		      <Button onPress={() => {firebase.auth().signOut();}}>Log Out</Button>
+		      <View style={styles.containerStyle} >
+		      	<Button 
+		      		onPress={() => {firebase.auth().signOut();}}>
+		      			Log Out!
+		      	</Button>
+		      </View>
 		    );
 			case false:
 				return <LoginForm />;
 			default:
-				return <Spinner />;
+				return ( 
+					<View style={styles.containerStyle} >
+						<Spinner />
+					</View>
+				);
 		}
 	}
 
@@ -48,3 +57,13 @@ export default class App extends Component {
     );
   }
 }
+
+const styles = {
+  containerStyle: {
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 10,
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
+  }
+};
